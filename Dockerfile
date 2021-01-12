@@ -7,8 +7,8 @@ RUN apk add wget
 RUN apk add --no-cache --upgrade bash
 
 # Download scc
-RUN wget https://github.com/boyter/scc/releases/download/v2.12.0/scc-2.12.0-i386-unknown-linux.zip
-RUN unzip ./scc-2.12.0-i386-unknown-linux.zip -d /
+RUN wget https://github.com/boyter/scc/releases/download/v2.13.0/scc-2.13.0-x86_64-unknown-linux.zip
+RUN unzip ./scc-2.13.0-x86_64-unknown-linux.zip -d /
 RUN chmod +x /scc
 
 # Copy shell script
