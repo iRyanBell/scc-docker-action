@@ -1,9 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
-SCC=$(/scc $@)
-
-SCC="${SCC//'%'/'%25'}"
-SCC="${SCC//$'\n'/'%0A'}"
-SCC="${SCC//$'\r'/'%0D'}"
-
-echo "::set-output name=scc::$SCC"
+echo "::set-output name=scc::""$(/scc "$@" | sed 's/%/%25/g ; :a;N;$!ba;s/\n/%0A/g ; s/\r/%0D/g')"
