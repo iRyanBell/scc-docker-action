@@ -14,6 +14,7 @@ RUN chmod +x /scc
 FROM alpine:3.11.3
 # Copy shell script
 COPY --from=base /scc /scc
+COPY entrypoint.sh /
 
 # Run script
-ENTRYPOINT ["/scc"]
+ENTRYPOINT ["/entrypoint.sh"]
