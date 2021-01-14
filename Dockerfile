@@ -1,5 +1,5 @@
 # Use Alpine image
-FROM alpine:3.11.3
+FROM alpine:3.11.3 as base
 
 # Install wget + bash
 RUN apk update
@@ -11,8 +11,10 @@ RUN wget https://github.com/boyter/scc/releases/download/v2.13.0/scc-2.13.0-x86_
 RUN unzip ./scc-2.13.0-x86_64-unknown-linux.zip -d /
 RUN chmod +x /scc
 
+FROM alpine:3.11.3
 # Copy shell script
-COPY entrypoint.sh /entrypoint.sh
+COPY --from=base /scc /scc
+COPY entrypoint.sh /
 
 # Run script
 ENTRYPOINT ["/entrypoint.sh"]
