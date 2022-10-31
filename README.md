@@ -32,5 +32,7 @@ jobs:
         with:
           args: ${{ env.workspace }} -i js,go,html,css
       - name: Echo scc output
-        run: echo "\n${{ steps.scc.outputs.scc }}"
+        run: |
+          echo
+          echo -n "${{ steps.scc.outputs.scc }}"
 ```
