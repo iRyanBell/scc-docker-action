@@ -1,5 +1,5 @@
 # Use Alpine image
-FROM alpine:3.11.3
+FROM alpine:3.16.2
 
 # Install wget + bash
 RUN apk update
