@@ -16,7 +16,7 @@ The lines of ccode.
 
 _.github/workflows/main.yml_
 
-```
+```yaml
 on: [push]
 
 jobs:
@@ -25,10 +25,12 @@ jobs:
     name: A job to count the lines of code.
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Get the lines of code.
         id: scc
-        uses: iryanbell/scc-docker-action@v1.0.2
+        uses: Adapt-API/scc-docker-action@master
         with:
           args: ${{ env.workspace }} -i js,go,html,css
+      - name: Echo scc output
+        run: echo "\n${{ steps.scc.outputs.scc }}"
 ```
