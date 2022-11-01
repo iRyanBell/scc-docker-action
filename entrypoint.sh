@@ -2,8 +2,7 @@
 
 SCC=$(/scc $@)
 
-SCC="${SCC//'%'/'%25'}"
-SCC="${SCC//$'\n'/'%0A'}"
-SCC="${SCC//$'\r'/'%0D'}"
-
-echo "::set-output name=scc::$SCC"
+delimiter="$(date|md5sum)"
+echo "scc<<${delimiter}" >> "${GITHUB_OUTPUT}"
+echo "${SCC}" >> "${GITHUB_OUTPUT}"
+echo "${delimiter}" >> "${GITHUB_OUTPUT}"
