@@ -10,7 +10,7 @@ This action counts the lines of code and performs complexity analysis using scc.
 
 ### `scc`
 
-The lines of ccode.
+The lines of code.
 
 ## Example usage
 
@@ -35,4 +35,23 @@ jobs:
         run: |
           echo
           echo -n "${{ steps.scc.outputs.scc }}"
+          echo -n "${{ fromJson(steps.scc.outputs.scc)[0].Code }}"
+```
+
+## Another example with badge
+
+```yaml
+      - name: Get lines of code (more sophisticated)
+        id: scc
+        uses: iryanbell/scc-docker-action@v1.0.2
+        with:
+          args: ${{ env.workspace }} -i php --exclude-dir vendor --format json src
+
+      - name: Make lines of code badge
+        uses: emibcn/badge-action@v2.0.2
+        with:
+          label: Lines of Code
+          status: ${{ fromJson(steps.scc.outputs.scc)[0].Code }}
+          color: 'blue'
+          path: .github/lines.svg
 ```
